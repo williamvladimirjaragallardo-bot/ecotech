@@ -1,16 +1,14 @@
-from infraestructura.conexion import obtener_conexion
+import sqlite3 
+conn = sqlite3.connect('ecotech.db')
+conn.executescript(open('db/01_esquema.sql', encoding='utf-8').read())
+
+print ("ingrese nombre")
+nombre = input()
+print ("ingrese rut")
+rut = input()
 
 
-with obtener_conexion() as conn:
-    conn.execute(
-        "INSERT INTO persona (rut, nombre) VALUES (?, ?)",
-        ("12345678-9", "Ana Rojas"),
-    )
-
-with obtener_conexion() as conn:
-    filas = conn.execute(
-        "SELECT rut, nombre FROM persona"
-    ).fetchall()
-
-    for fila in filas:
-        print(fila)
+conn.execute(f"INSERT INTO `persona` (`rut`, `nombre`) VALUES ('{rut}', '{nombre}')")
+print(conn.execute("Select * from persona").fetchall())
+conn.commit()
+conn.close()
