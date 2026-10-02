@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 .env
 .venv/
 __pycache__/
 *.pyc
 ecotech.db
+=======
+.venv/
+__pycache__/
+*.pyc
+.env
+>>>>>>> 945e6243afd35489b62797904a3c4ff6d93ba124
